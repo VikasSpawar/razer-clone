@@ -1,19 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Homepage from './Pages/Homepage'
-import Navbar from './components/Navbar'
+import { useEffect, useState } from "react";
+
+import "./App.css";
+import AllRoutes from "./Routes/AllRoutes";
+import Navbar from "./components/Navbar";
+
+import axios from "axios";
+import { Toaster } from "react-hot-toast";
+import Footer from "./components/Footer";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const api = import.meta.env.VITE_API;
+
+  useEffect(() => {
+    setIsLoading(true);
+    axios(`${api}/products`).then((res) => {
+      setIsLoading(false);
+      setProducts(res.data);
+    });
+  }, []);
 
   return (
     <>
-    <Navbar/>
-     {/* <Homepage/> */}
+      <Toaster position="top-center" reverseOrder={false} />
+      <Navbar products={products} isLoading={isLoading} />
+      <AllRoutes products={products} isLoading={isLoading} />
+      <Footer />
+      {/* <Homepage/> */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
