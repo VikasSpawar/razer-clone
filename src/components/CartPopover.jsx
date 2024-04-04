@@ -10,9 +10,7 @@ const CartPopover = ({ isCartOpen, handleCartPopup }) => {
   const [productsInCart, setProductsInCart] = useState([]);
   const navigation = useNavigate();
 
-  const handleRedirect = () => {
-    navigation(`/cart`);
-  };
+
 
   useEffect(() => {
     axios.get(`${api}/cart`).then((res) => {
@@ -103,15 +101,16 @@ const CartPopover = ({ isCartOpen, handleCartPopup }) => {
         </div>
         <div className="cartPopoverItems">
           <ul className="text-white [&>li]:py-3  flex flex-col text-left divide-[#555]  divide-y px-4">
+            <Link to='/cart' >  
             <li
-              onClick={handleRedirect}
+              
               className="hover:text-green-500 flex items-center space-x-2 py-2"
             >
-              <Link to='/cart'>   <BsCart />
+               <BsCart />
               <span>Cart</span>
-              </Link>
            
             </li>
+              </Link>
             <li className="hover:text-green-500 flex items-center space-x-2 py-2">
               <BsBox2 />
               <span></span>

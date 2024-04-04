@@ -4,27 +4,25 @@ import { NavLink } from "./Navbar";
 import { CgSearch } from "react-icons/cg";
 import Search from "./Search";
 import SmallScreenSearchBox from "./SmallScreenSearchBox";
+import { RiShoppingCartLine } from "react-icons/ri";
+import CartPopover from "./CartPopover";
 
-const NavForSmallScreens = ({products ,isLoading }) => {
-
-let location = useLocation()
+const NavForSmallScreens = ({ products, isLoading , handleCartPopup  , isCartOpen }) => {
+let location = useLocation();
 
 const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
 
 const handleSidebarPopup = () => {
 setIsSidebarOpen(!isSidebarOpen);
 };
 
-useEffect(()=>{
-
-    setIsSidebarOpen(false)
-
-},[location])
+useEffect(() => {
+setIsSidebarOpen(false);
+}, [location]);
 
 return (
 <div>
-    <div className={`   flex px-4  py-2`}>
+    <div className={`   flex px-4 justify-between  py-2`}>
     <div onClick={handleSidebarPopup} className=" md:flex  background">
         <button
         className={`${
@@ -37,24 +35,31 @@ return (
         </button>
     </div>
 
-    <div className="m-0 flex justify-end p-0 w-full ">
+    <div className="m-0 flex justify-end p-0 w-auto ">
         <img
         src="https://assets2.razerzone.com/images/phoenix/razer-ths-logo.svg"
         alt="Logo"
         className="h-8 mr-4"
         />
     </div>
+    <div className="my-auto">
+        <NavLink>
+              <RiShoppingCartLine onClick={handleCartPopup} size={22} />
+              <CartPopover
+                handleCartPopup={handleCartPopup}
+                isCartOpen={isCartOpen}
+              />
+            </NavLink>
+    </div>
+    
     </div>
     <div className="flex justify-around items-center  ">
-
     <div
-        className={`${!isSidebarOpen&&'hidden'}  transition-all flex flex-col [&>a]:border-[#555] [&>a]:border-b [&>a]:p-5  w-full p-2 [&>a]:justify-start h-screen   text-left `
-    }>   
-
-    <SmallScreenSearchBox  products={products} isLoading={isLoading}/>
-  
-
-    
+        className={`${
+        !isSidebarOpen && "hidden"
+        }  transition-all flex flex-col [&>a]:border-[#555] [&>a]:border-b [&>a]:p-5  w-full p-2 [&>a]:justify-start h-screen   text-left `}
+    >
+        <SmallScreenSearchBox products={products} isLoading={isLoading} />
 
         <NavLink to="/store" active={location.pathname === "/store"}>
         Store
@@ -80,19 +85,8 @@ return (
         <NavLink to="/support" active={location.pathname === "/support"}>
         Support
         </NavLink>
-        {/* <NavLink to="/cart" active={location.pathname === "/cart"}> */}
-        {/* <IoSearchSharp size={22} /> */}
-        {/* </NavLink> */}
-        {/* <NavLink>
-        <RiShoppingCartLine onClick={handleCartPopup} size={22} />
-        <CartPopover
-            handleCartPopup={handleCartPopup}
-            isCartOpen={isCartOpen}
-        />
-        </NavLink> */}
     </div>
     </div>
-  
 </div>
 );
 };

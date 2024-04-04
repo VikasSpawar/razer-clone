@@ -5,9 +5,9 @@ import { Link, useLocation } from "react-router-dom"; // If you're using React R
 import CartPopover from "./CartPopover";
 import NavForSmallScreens from "./NavForSmallScreens";
 import Search from "./Search";
-const Navbar = ({products , isLoading}) => {
+const Navbar = ({ products, isLoading }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isSearchOn , setIsSearchOn]=useState(false)
+  const [isSearchOn, setIsSearchOn] = useState(false);
   const location = useLocation(); // React Router hook to get current location
 
   const handleCartPopup = () => {
@@ -16,16 +16,24 @@ const Navbar = ({products , isLoading}) => {
   return (
     <nav className="bg-black w-full sticky top-0 z-10">
       <div className="lg:hidden">
-        <NavForSmallScreens location={location} products={products}  isLoading={isLoading}/>
+        <NavForSmallScreens
+         
+          handleCartPopup={handleCartPopup}
+          isCartOpen={isCartOpen}
+          location={location}
+          products={products}
+          isLoading={isLoading}
+        />
       </div>
-      <div className="
+      <div
+        className="
       hidden
       lg:block
-      py-4 ">
+      py-4 "
+      >
         <div className="flex justify-around items-center">
-        
           <div className="   flex items-center w-full mx-10 ">
-            <Link to={'/'} className="m-0 flex justify-center p-0 w-full ">
+            <Link to={"/"} className="m-0 flex justify-center p-0 w-full ">
               <img
                 src="https://assets2.razerzone.com/images/phoenix/razer-ths-logo.svg"
                 alt="Logo"
@@ -63,10 +71,16 @@ const Navbar = ({products , isLoading}) => {
             <NavLink to="/support" active={location.pathname === "/support"}>
               Support
             </NavLink>
-            <NavLink >
-              {isSearchOn ?     <Search products={products} isLoading={isLoading} setIsSearchOn={setIsSearchOn}/> :   <IoSearchSharp onClick={()=>setIsSearchOn(true)} size={22} />}
-         
-        
+            <NavLink>
+              {isSearchOn ? (
+                <Search
+                  products={products}
+                  isLoading={isLoading}
+                  setIsSearchOn={setIsSearchOn}
+                />
+              ) : (
+                <IoSearchSharp onClick={() => setIsSearchOn(true)} size={22} />
+              )}
             </NavLink>
             <NavLink>
               <RiShoppingCartLine onClick={handleCartPopup} size={22} />
