@@ -78,7 +78,6 @@ const Footer = () => {
             <p>Legal Term</p>
 
             <p>Legal Term</p>
-            <p>Legal Term</p>
           </div>
         </div>
         <div className="flex divide-x-2 divide-slate-500 gap-2 m-auto">
