@@ -10,7 +10,7 @@ let data=[
   {
     bgImage:'https://assets2.razerzone.com/images/pnx.assets/89acc66caa02feac3530c8d538b16d4f/razer-blade16-2024-b-950x580-desktop.webp',
     heading:"New Razer blade 16",
-    desc:'fastest.Sharp.Clearest.',
+    desc:'fastest Sharp Clearest',
     link:"shop now"
 
   }

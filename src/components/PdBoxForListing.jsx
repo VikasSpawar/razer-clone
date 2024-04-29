@@ -21,6 +21,8 @@ const PdBoxForListing = ({ product  }) => {
   useEffect(()=>{
     setBadgeColor(product.badge.color.toLowerCase())
   },[])
+
+  console.log(product)
   return (
     <div
       onClick={handleRedirectToProduct}
@@ -53,8 +55,7 @@ const PdBoxForListing = ({ product  }) => {
             {/* {product.description} */}
           </p>
           <p className="text-sm font-light leading-3 text-[#fff]">
-            Get a Razer USB-C 130W GaN Charger with selected GeForce RTX 40
-            Series.*
+            {product.summary}
           </p>
         </div>
 

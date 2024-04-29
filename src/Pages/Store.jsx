@@ -13,16 +13,14 @@ const Store = ({ products, isLoading }) => {
 const api = import.meta.env.VITE_API;
 const { category } = useParams();
 const [categoryData, setCategoryData] = useState([]);
-const [onLoading , setOnLoading]=useState(false)
+const [onLoading, setOnLoading] = useState(false);
 useEffect(() => {
 if (category) {
-    setOnLoading(true)
-    axios(`${api}/products/cat/${category}`).then(
-    (res) => {
-        setOnLoading(false)
-        setCategoryData(res.data);
-    }
-    );
+    setOnLoading(true);
+    axios(`${api}/products/cat/${category}`).then((res) => {
+    setOnLoading(false);
+    setCategoryData(res.data);
+    });
 }
 }, [category]);
 
@@ -38,7 +36,7 @@ return (
     <ProductCarousel>
     {category
         ? isLoading
-        ? [1, 2, 3, 4].map(( i) => {
+        ? [1, 2, 3, 4].map((i) => {
             return (
                 <div
                 key={i}
@@ -50,7 +48,7 @@ return (
             return <PdBoxForListing key={i} product={el} />;
             })
         : isLoading
-        ? [1, 2, 3, 4].map((el, i) => {
+        ? [1, 2, 3, 4].map((i) => {
             return (
             <div
                 key={i}
@@ -58,7 +56,7 @@ return (
             ></div>
             );
         })
-        : products.map((el, i) => {
+        : products?.map((el, i) => {
             return <PdBoxForListing key={i} product={el} />;
         })}
     </ProductCarousel>
@@ -66,7 +64,9 @@ return (
     <div className="w-full h-64  m-auto">
         {" "}
         <p className="text-xl  font-bold my-auto ">products coming soon...</p>
-{       onLoading&&<div className='m-4 w-[100px] h-[100px] mx-auto border-[#44d62c]  border-t-4 rounded-full animate-spin'></div>}
+        {onLoading && (
+        <div className="m-4 w-[100px] h-[100px] mx-auto border-[#44d62c]  border-t-4 rounded-full animate-spin"></div>
+        )}
     </div>
     )}
 
