@@ -9,11 +9,16 @@ import WhyToBuy from "../components/WhyToBuy";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
+
+
+
 const Store = ({ products, isLoading }) => {
 const api = import.meta.env.VITE_API;
 const { category } = useParams();
 const [categoryData, setCategoryData] = useState([]);
 const [onLoading, setOnLoading] = useState(false);
+
+// Fetch products based on category when component mounts
 useEffect(() => {
 if (category) {
     setOnLoading(true);

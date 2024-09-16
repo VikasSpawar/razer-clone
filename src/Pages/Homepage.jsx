@@ -1,5 +1,3 @@
-import CartPopover from "../components/CartPopover";
-import Footer from "../components/Footer";
 import HeaderBox from "../components/HeaderBox";
 import HeaderBox2 from "../components/HeaderBox2";
 import Notification from "../components/Notification";

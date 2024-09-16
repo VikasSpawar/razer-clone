@@ -4,11 +4,11 @@ import axios from "axios";
 import { BsBox2, BsCart, BsPerson } from "react-icons/bs";
 import { MdOutlineLogin } from "react-icons/md";
 import { RiVipDiamondLine } from "react-icons/ri";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const CartPopover = ({ isCartOpen, handleCartPopup }) => {
   const api = import.meta.env.VITE_API;
   const [productsInCart, setProductsInCart] = useState([]);
-  const navigation = useNavigate();
+ 
 
 
 

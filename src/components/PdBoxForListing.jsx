@@ -22,7 +22,7 @@ const PdBoxForListing = ({ product  }) => {
     setBadgeColor(product.badge.color.toLowerCase())
   },[])
 
-  console.log(product)
+
   return (
     <div
       onClick={handleRedirectToProduct}
